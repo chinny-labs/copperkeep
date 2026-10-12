@@ -53,6 +53,10 @@ helm-golden: ## Accept the current rendering as the new golden files
 	UPDATE_GOLDEN=1 scripts/helm-golden.sh
 
 .PHONY: smoke
+.PHONY: site
+site: ## Build the website (landing page plus docs/) into site/_site and check its links
+	cd site && npm ci && node build.mjs && node check-links.mjs
+
 smoke: ## Stand up Compose and run the smoke assertions
 	scripts/smoke-compose.sh
 

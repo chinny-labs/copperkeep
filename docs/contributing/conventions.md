@@ -35,3 +35,7 @@ These keep the deployment decoupled. They are worth enforcing in review.
 Docs live beside the code because documentation in a second repo cannot change in the
 same commit as the code it describes, so it cannot be required by the same pull request,
 so it rots.
+
+## Docs and the website
+
+The site at <https://chinny-labs.github.io/copperkeep/> is built from `site/` (the landing page) and the Markdown in `docs/`; `make site` builds and link-checks it, and the `pages` workflow publishes it on `main`. **Docs change in the same PR as the code.** A new page needs adding to `sections` in `site/build.mjs`, or it won't appear on the site. Screenshots must never show real learners' names or data.

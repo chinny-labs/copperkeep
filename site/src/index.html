@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Copperkeep · a self-hosted place for kids to learn Python</title>
+<meta name="description" content="Copperkeep is a self-hosted, browser-based platform for teaching programming. Code runs in the browser, progress stays on your own server, and there is no email or personal data to collect.">
+<meta property="og:title" content="Copperkeep">
+<meta property="og:description" content="Learn to code, one line at a time. Self-hosted, runs in the browser, no personal data.">
+<meta property="og:image" content="screenshots/signin.png">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html"><img src="icon.svg" alt="" width="32" height="32"><span class="wordmark"><span class="c">Copper</span>keep</span></a>
+  <nav aria-label="Site"><a href="#features">Features</a><a href="docs/index.html">Docs</a><a href="https://github.com/chinny-labs/copperkeep">GitHub</a></nav>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Self-hosted · AGPL-3.0 · early (0.1)</span>
+      <h1>Learn to code, <em>one line at a time.</em></h1>
+      <p class="lede">Copperkeep is a place for kids to learn Python. Their code runs right in the browser, so the server only keeps their progress, and all of it stays on your own network.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#install">Install it</a>
+        <a class="btn btn-outline" href="docs/index.html">Read the docs</a>
+      </div>
+      <ul class="facts">
+        <li>Runs in the browser</li><li>Helm or Docker Compose</li><li>No email, no personal data</li><li>One Postgres</li>
+      </ul>
+    </div>
+    <div class="stage">
+      <div class="browser">
+        <img src="screenshots/signin.png" width="1280" height="800" alt="The Copperkeep sign-in page: a castle-tower logo, the headline “Learn to code, one line at a time”, and a form asking for a group, a name and four numbers.">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" id="features">
+  <div class="wrap">
+    <div class="head">
+      <h2>Built for a family, a classroom, or a tutoring room</h2>
+      <p>A small system with few moving parts, designed so a child can use it without a grown-up standing over them.</p>
+    </div>
+    <ul class="features">
+      <li><span class="dot t-river" aria-hidden="true">▶</span><h3>Code runs in the browser</h3><p>Python runs as WebAssembly on the learner's own device. There's no sandbox server to harden and no per-learner compute cost.</p></li>
+      <li><span class="dot t-gold" aria-hidden="true">★</span><h3>Mastery, not completion</h3><p>A skill model decides when a learner moves on. Mastery gates a branch, never a lock, so someone who's stuck always has a door.</p></li>
+      <li><span class="dot t-indigo" aria-hidden="true">Aa</span><h3>Reading levels</h3><p>The same skills and the same tests, in words that fit the reader. Reading level is part of the lesson format, not a separate course.</p></li>
+      <li><span class="dot t-river" aria-hidden="true">⌂</span><h3>Private by design</h3><p>No email, no identity provider, no personal data to collect. Sign-in is a group, a name and four numbers, and your learners' work stays on your server.</p></li>
+      <li><span class="dot t-gold" aria-hidden="true">▤</span><h3>A view for the grown-ups</h3><p>Accounts, reports and progress for the adults looking after a group of learners.</p></li>
+      <li><span class="dot t-berry" aria-hidden="true">CC</span><h3>Open lessons</h3><p>The curriculum is its own repo under CC BY-SA 4.0, released on its own calendar. An optional AI tutor is off by default, and it never writes the lessons.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="band" id="how">
+  <div class="wrap">
+    <div class="head">
+      <h2>One origin, a handful of containers</h2>
+      <p>Everything is served from a single address and routed by path. That isn't cosmetic: stopping a running program needs <code>SharedArrayBuffer</code>, which needs the browser to see one origin over TLS.</p>
+    </div>
+    <div class="arch"><pre><code>/            web        the app
+/content/    content    lesson JSON
+/audio/      audio      narration
+/runtimes/   runtimes   Pyodide and wheels
+/v1/         api        the only dynamic part (talks to Postgres)</code></pre></div>
+    <p class="caption arch-note">All images are multi-arch (amd64 and arm64), so a Raspberry Pi 5 is a fine home.</p>
+  </div>
+</section>
+
+<section class="band alt" id="install">
+  <div class="wrap">
+    <div class="head">
+      <h2>Install</h2>
+      <p>Pick one. Both use the same images and the same settings. TLS is required, because the browser features it relies on need a secure context.</p>
+    </div>
+    <div class="quick">
+      <div>
+        <h3>Kubernetes (Helm)</h3>
+<pre><code>helm install copperkeep \
+  oci://ghcr.io/chinny-labs/charts/copperkeep \
+  --version 0.1.13 \
+  --namespace copperkeep --create-namespace \
+  --set ingress.host=learn.example.com</code></pre>
+        <p>Works on k3s, Talos and any cluster. Postgres runs in the chart (or point it at your own).</p>
+      </div>
+      <div>
+        <h3>One box (Docker Compose)</h3>
+<pre><code>cd deploy/compose
+cp .env.example .env   # set the secrets
+docker compose pull
+docker compose up -d</code></pre>
+        <p>Set <code>COPPERKEEP_SESSION_SECRET</code> and <code>POSTGRES_PASSWORD</code> first. Back up before you need it: see <a href="docs/operations/backup-restore.html">backup and restore</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="docs">
+  <div class="wrap">
+    <div class="head"><h2>Documentation</h2></div>
+    <ul class="doc-grid">
+      <li><a href="docs/operations/install.html"><strong>Install</strong><span>Helm or Compose, and what to configure.</span></a></li>
+      <li><a href="docs/operations/upgrade.html"><strong>Upgrade</strong><span>App and curriculum version independently.</span></a></li>
+      <li><a href="docs/operations/backup-restore.html"><strong>Backup and restore</strong><span>Do it once, on the real machine.</span></a></li>
+      <li><a href="docs/operations/troubleshooting.html"><strong>Troubleshooting</strong><span>Frozen lessons, isolation, and friends.</span></a></li>
+      <li><a href="docs/architecture/plan.html"><strong>Design</strong><span>The architecture and the reasoning.</span></a></li>
+      <li><a href="docs/adr/index.html"><strong>Decisions</strong><span>The records, including the reversals.</span></a></li>
+    </ul>
+  </div>
+</section>
+</main>
+<!-- footer -->
+</body>
+</html>
