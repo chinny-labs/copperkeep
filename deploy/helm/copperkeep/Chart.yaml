@@ -5,11 +5,11 @@ type: application
 
 # version == appVersion, always. These ship as one thing; independent chart versioning
 # is for charts that package someone else's software.
-version: 0.1.13
-appVersion: "0.1.13"
+version: 0.1.14
+appVersion: "0.1.14"
 
 kubeVersion: ">=1.27.0-0"
-home: https://github.com/chinny-labs/copperkeep
+home: https://chinny-labs.github.io/copperkeep/
 sources:
   - https://github.com/chinny-labs/copperkeep
 keywords:
