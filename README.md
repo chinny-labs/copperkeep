@@ -9,12 +9,12 @@ Full design: [`docs/architecture/plan.md`](docs/architecture/plan.md).
 
 | Image | Built from | Contents |
 |---|---|---|
-| `ghcr.io/copperkeep/web` | `apps/web` | nginx + the SPA bundle |
-| `ghcr.io/copperkeep/api` | `apps/api` | FastAPI — the only service with database credentials |
-| `ghcr.io/copperkeep/runtimes` | `images/runtimes` | nginx + Pyodide + vendored wheels |
-| `ghcr.io/copperkeep/tutor` | `apps/tutor` | optional LLM guidance service, off by default |
-| `ghcr.io/copperkeep/content` | [`copperkeep/curriculum`](https://github.com/copperkeep/curriculum) | nginx + built lesson JSON |
-| `ghcr.io/copperkeep/audio` | [`copperkeep/curriculum`](https://github.com/copperkeep/curriculum) | nginx + narration `.ogg` |
+| `ghcr.io/chinny-labs/web` | `apps/web` | nginx + the SPA bundle |
+| `ghcr.io/chinny-labs/api` | `apps/api` | FastAPI — the only service with database credentials |
+| `ghcr.io/chinny-labs/runtimes` | `images/runtimes` | nginx + Pyodide + vendored wheels |
+| `ghcr.io/chinny-labs/tutor` | `apps/tutor` | optional LLM guidance service, off by default |
+| `ghcr.io/chinny-labs/content` | [`chinny-labs/copperkeep-curriculum`](https://github.com/chinny-labs/copperkeep-curriculum) | nginx + built lesson JSON |
+| `ghcr.io/chinny-labs/audio` | [`chinny-labs/copperkeep-curriculum`](https://github.com/chinny-labs/copperkeep-curriculum) | nginx + narration `.ogg` |
 
 All images are multi-arch (`linux/amd64`, `linux/arm64`).
 
@@ -23,8 +23,8 @@ All images are multi-arch (`linux/amd64`, `linux/arm64`).
 ### Helm (k3s, Talos, any cluster)
 
 ```sh
-helm install copperkeep oci://ghcr.io/copperkeep/charts/copperkeep \
-  --version 0.1.12 \
+helm install copperkeep oci://ghcr.io/chinny-labs/charts/copperkeep \
+  --version 0.1.13 \
   --namespace copperkeep --create-namespace \
   --set ingress.host=learn.example.com
 ```
@@ -88,7 +88,7 @@ everything else stays together so a contract change is one atomic commit.
 - [`packages/contracts`](packages/contracts) is **Apache-2.0** — it is the interface and
   schema a third party implements to add a language, and copyleft there would discourage
   that.
-- The [curriculum](https://github.com/copperkeep/curriculum) is **CC BY-SA 4.0**. Lessons
+- The [curriculum](https://github.com/chinny-labs/copperkeep-curriculum) is **CC BY-SA 4.0**. Lessons
   are not software.
 
 Contributions require agreeing to [`CLA.md`](CLA.md). That keeps the copyright

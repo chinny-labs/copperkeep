@@ -9,7 +9,7 @@ fullnameOverride: ""
 
 image:
   registry: ghcr.io
-  repository: copperkeep
+  repository: chinny-labs
   # Defaults to .Chart.AppVersion. Pin a digest in production.
   tag: ""
   pullPolicy: IfNotPresent

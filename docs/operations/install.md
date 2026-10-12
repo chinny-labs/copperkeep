@@ -34,7 +34,7 @@ A reverse proxy, a load balancer or Cloudflare doing the certificate is fine —
 secure context is judged on what the *browser* sees, not on where TLS ends.
 
 ```sh
-helm install copperkeep oci://ghcr.io/copperkeep/charts/copperkeep \
+helm install copperkeep oci://ghcr.io/chinny-labs/charts/copperkeep \
   --set ingress.host=learn.example.com \
   --set ingress.className=traefik \
   --set ingress.tls.enabled=false \
@@ -70,8 +70,8 @@ And note that Let's Encrypt cannot reach a private IP, so the certificate needs 
 ## Helm
 
 ```sh
-helm install copperkeep oci://ghcr.io/copperkeep/charts/copperkeep \
-  --version 0.1.12 \
+helm install copperkeep oci://ghcr.io/chinny-labs/charts/copperkeep \
+  --version 0.1.13 \
   --namespace copperkeep --create-namespace \
   --set ingress.host=learn.example.com \
   --set ingress.tls.secretName=copperkeep-tls
