@@ -30,11 +30,11 @@ services:
       - ./config.json:/usr/share/nginx/html/config.json:ro
 
   content:
-    image: ghcr.io/chinny-labs/content:${COPPERKEEP_CURRICULUM_VERSION:-2026.09.4}
+    image: ghcr.io/chinny-labs/content:${COPPERKEEP_CURRICULUM_VERSION:-2026.09.5}
     restart: unless-stopped
 
   audio:
-    image: ghcr.io/chinny-labs/audio:${COPPERKEEP_CURRICULUM_VERSION:-2026.09.4}
+    image: ghcr.io/chinny-labs/audio:${COPPERKEEP_CURRICULUM_VERSION:-2026.09.5}
     restart: unless-stopped
 
   runtimes:
