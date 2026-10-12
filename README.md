@@ -3,6 +3,8 @@
 Self-hosted, browser-based platform for teaching programming. All code execution
 happens client-side in WebAssembly; the server holds user data only.
 
+**Website and docs: <https://chinny-labs.github.io/copperkeep/>**
+
 Full design: [`docs/architecture/plan.md`](docs/architecture/plan.md).
 
 ## What ships
@@ -75,6 +77,7 @@ make dev             # postgres + api + web dev server
 make typecheck test  # everything
 make images          # build all images locally
 make helm-lint helm-template
+make site            # the website: landing page plus docs/, link-checked
 ```
 
 Layout follows `docs/architecture/plan.md` §10.2. The curriculum lives in its own repo
