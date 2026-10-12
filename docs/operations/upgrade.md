@@ -6,7 +6,7 @@ Two things version independently: the **application** (semver, `0.1.3`) and the
 ## Application
 
 ```sh
-helm upgrade copperkeep oci://ghcr.io/copperkeep/charts/copperkeep --version 0.2.0 --reuse-values
+helm upgrade copperkeep oci://ghcr.io/chinny-labs/charts/copperkeep --version 0.2.0 --reuse-values
 ```
 
 The chart version always equals the app version, and the release job refuses to publish
@@ -23,6 +23,15 @@ docker compose pull && docker compose up -d
 ```
 
 **Do not use Watchtower.** An auto-update landing mid-lesson is a bad experience.
+
+## Upgrading to 0.1.13
+
+**The project moved to the `chinny-labs` org.** Images and the chart are now published as
+`ghcr.io/chinny-labs/…` (`oci://ghcr.io/chinny-labs/charts/copperkeep`). Releases up to
+0.1.12 stay under `ghcr.io/copperkeep/…`, signed as `https://github.com/copperkeep/copperkeep/`;
+from 0.1.13 they are signed as `https://github.com/chinny-labs/copperkeep/`. To upgrade,
+point your chart URL (Helm) or image names (Compose) at the new path. The values schema is
+unchanged, and the curriculum repo is now `copperkeep-curriculum`. No migration.
 
 ## Upgrading to 0.1.12
 

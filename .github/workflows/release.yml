@@ -13,7 +13,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  NAMESPACE: copperkeep
+  NAMESPACE: ${{ github.repository_owner }}
 
 jobs:
   version:

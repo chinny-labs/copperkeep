@@ -3,7 +3,7 @@
 **Version:** 0.6
 **Date:** 2026-09-11
 **Status:** Design settled; Phase 0 spike is the next action
-**Repo:** `github.com/copperkeep/copperkeep` · curriculum in `github.com/copperkeep/curriculum` (§10)
+**Repo:** `github.com/chinny-labs/copperkeep` · curriculum in `github.com/chinny-labs/copperkeep-curriculum` (§10)
 
 ---
 
@@ -911,14 +911,14 @@ own — and CI stands up *both* and runs the same smoke test against them (§11.
 ### 10.1 Two repositories, under one org
 
 An organisation, not a personal account. The container namespace ends up in every
-Helm values file and Compose file shipped to a customer — `ghcr.io/copperkeep/api`
+Helm values file and Compose file shipped to a customer — `ghcr.io/chinny-labs/api`
 reads correctly, a personal-account prefix does not. It is also the ownership
 boundary if this becomes a business, and transferring a repo later breaks every URL.
 
 | Repo | Holds | Versioning |
 |---|---|---|
 | `copperkeep/copperkeep` | Platform: all five services, shared packages, deploy manifests, docs | semver |
-| `copperkeep/curriculum` | Lessons, skills ontology, prose tiers, tests, authoring docs | calver (§11.1) |
+| `chinny-labs/copperkeep-curriculum` | Lessons, skills ontology, prose tiers, tests, authoring docs | calver (§11.1) |
 | `copperkeep/.github` | Issue templates, security policy, community health | — |
 
 **The curriculum split is the only boundary that is real.** Different release cadence,
@@ -1064,7 +1064,7 @@ an ORAS-pulled OCI artifact later is a values change, not a rewrite.
 The chart publishes as an **OCI artifact to the same registry as the images**:
 
 ```
-oci://ghcr.io/copperkeep/charts/copperkeep
+oci://ghcr.io/chinny-labs/charts/copperkeep
 ```
 
 Same registry, same credentials, same cosign signing, same digest pinning as every
@@ -1074,7 +1074,7 @@ mirrors charts and images with one tool instead of two.
 Install becomes:
 
 ```
-helm install copperkeep oci://ghcr.io/copperkeep/charts/copperkeep --version 1.4.2
+helm install copperkeep oci://ghcr.io/chinny-labs/charts/copperkeep --version 1.4.2
 ```
 
 Released by the same job that pushes the images, so a chart version that exists always
