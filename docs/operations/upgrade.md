@@ -24,6 +24,14 @@ docker compose pull && docker compose up -d
 
 **Do not use Watchtower.** An auto-update landing mid-lesson is a bad experience.
 
+## Upgrading to 0.1.14
+
+The chart and Compose file now default the curriculum to `2026.09.5`, the version published
+under `ghcr.io/chinny-labs`. 0.1.13 defaulted to `2026.09.4`, which exists only under the
+old `ghcr.io/copperkeep` namespace, so a default install of 0.1.13 couldn't pull `content`
+and `audio` (pinning `content.tag` and `audio.tag` worked around it). The chart's `home`
+now points at the website. No migration, no values changes.
+
 ## Upgrading to 0.1.13
 
 **The project moved to the `chinny-labs` org.** Images and the chart are now published as

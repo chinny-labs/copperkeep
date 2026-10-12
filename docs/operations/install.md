@@ -71,7 +71,7 @@ And note that Let's Encrypt cannot reach a private IP, so the certificate needs 
 
 ```sh
 helm install copperkeep oci://ghcr.io/chinny-labs/charts/copperkeep \
-  --version 0.1.13 \
+  --version 0.1.14 \
   --namespace copperkeep --create-namespace \
   --set ingress.host=learn.example.com \
   --set ingress.tls.secretName=copperkeep-tls
